@@ -30,25 +30,25 @@ def setup_plot(size):
 	return fig, ax
 
 
-def draw_image(image, name, size, format=default_format, filepath='.'):
+def draw_image(image, name, size, format=normal_format, filepath='.'):
 	print(name)
 	fig, ax = setup_plot(size)
 	title = os.path.join(filepath, name)
 	ax.imshow(image)
 	plt.savefig(title + format)
-	plt.savefig(title + normal_format)
+     
 
 
-def draw_canny(image, name, format=default_format, filepath='.'):
+def draw_canny(image, name, format=normal_format, filepath='.'):
 	print(name)
 	fig, ax = setup_plot()
 	title = os.path.join(filepath, name)
 	ax.imshow(image, cmap='Greys')
 	plt.savefig(title + format)
-	plt.savefig(title + normal_format)
+     
 
 
-def draw_hough(image, walls, name, size, format=default_format, filepath='.'):
+def draw_hough(image, walls, name, size, format=normal_format, filepath='.'):
 	print(name)
 	fig, ax = setup_plot(size)
 	title = os.path.join(filepath, name)
@@ -59,10 +59,10 @@ def draw_hough(image, walls, name, size, format=default_format, filepath='.'):
 		cv2.line(img, (x1, y1), (x2, y2), (randint(0, 255), randint(0, 255), randint(0, 255)), 3)
 	ax.imshow(img, cmap='Greys')
 	plt.savefig(title + format)
-	plt.savefig(title + normal_format)
+     
 
 
-def draw_walls(walls, name, size, format=default_format, filepath='.'):
+def draw_walls(walls, name, size, format=normal_format, filepath='.'):
 	print(name)
 	fig, ax = setup_plot(size)
 	x_coordinates = []
@@ -82,10 +82,10 @@ def draw_walls(walls, name, size, format=default_format, filepath='.'):
 		del x_coordinates[:]
 		del y_coordinates[:]
 	plt.savefig(title + format)
-	plt.savefig(title + normal_format)
+     
 
 
-def draw_contour(vertices, name, size, format=default_format, filepath='.'):
+def draw_contour(vertices, name, size, format=normal_format, filepath='.'):
 	# draw the external contour of the metric map
 	print(name)
 	fig, ax = setup_plot(size)
@@ -99,10 +99,10 @@ def draw_contour(vertices, name, size, format=default_format, filepath='.'):
 	# ax.set_xlim(x_min - 1, x_max + 1)
 	# ax.set_ylim(y_min - 1, y_max + 1)
 	plt.savefig(title + format)
-	plt.savefig(title + normal_format)
+     
 
 
-def draw_angular_clusters(angular_clusters, walls, name, size, format=default_format, filepath='.'):
+def draw_angular_clusters(angular_clusters, walls, name, size, format=normal_format, filepath='.'):
 	print(name)
 	x_coordinates = []
 	y_coordinates = []
@@ -124,10 +124,10 @@ def draw_angular_clusters(angular_clusters, walls, name, size, format=default_fo
 			del x_coordinates[:]
 			del y_coordinates[:]
 	plt.savefig(title + format)
-	plt.savefig(title + normal_format)
+     
 
 
-def draw_representative_segments(representatives_segments, name, size, format=default_format, filepath='.'):
+def draw_representative_sgms(representatives_segments, name, size, format=normal_format, filepath='.'):
 	print(name)
 	fig, ax = setup_plot(size)
 	x_coordinates = []
@@ -147,10 +147,10 @@ def draw_representative_segments(representatives_segments, name, size, format=de
 		del x_coordinates[:]
 		del y_coordinates[:]
 	plt.savefig(title + format)
-	plt.savefig(title + normal_format)
+     
 
 
-def draw_spatial_wall_clusters(wall_clusters, walls, name, size, format=default_format, filepath='.'):
+def draw_spatial_wall_clusters(wall_clusters, walls, name, size, format=normal_format, filepath='.'):
 	print(name)
 	x_coordinates = []
 	y_coordinates = []
@@ -172,10 +172,10 @@ def draw_spatial_wall_clusters(wall_clusters, walls, name, size, format=default_
 			del x_coordinates[:]
 			del y_coordinates[:]
 	plt.savefig(title + format)
-	plt.savefig(title + normal_format)
+     
 
 
-def draw_spatial_clusters(spatial_clusters, walls, name, size, format=default_format, filepath='.'):
+def draw_spatial_clusters(spatial_clusters, walls, name, size, format=normal_format, filepath='.'):
 	print(name)
 	x_coordinates = []
 	y_coordinates = []
@@ -198,10 +198,10 @@ def draw_spatial_clusters(spatial_clusters, walls, name, size, format=default_fo
 			del x_coordinates[:]
 			del y_coordinates[:]
 	plt.savefig(title + format)
-	plt.savefig(title + normal_format)
+     
 
 
-def draw_extended_lines(extended_segments, walls, name, size, format=default_format, filepath='.'):
+def draw_extended_lines(extended_segments, walls, name, size, format=normal_format, filepath='.'):
 	print(name)
 	x_coordinates = []
 	y_coordinates = []
@@ -227,10 +227,10 @@ def draw_extended_lines(extended_segments, walls, name, size, format=default_for
 		del x_coordinates[:]
 		del y_coordinates[:]
 	plt.savefig(title + format)
-	plt.savefig(title + normal_format)
+     
 
 
-def draw_dbscan(labels, faces, polygon_faces, edges, contours, name, size, format=default_format, filepath='.'):
+def draw_dbscan(labels, faces, polygon_faces, edges, contours, name, size, format=normal_format, filepath='.'):
 	# draw faces based on cluster obtained by dbscan. faces of same cluster have same color.
 	print(name)
 	fig, ax = setup_plot(size)
@@ -281,11 +281,11 @@ def draw_dbscan(labels, faces, polygon_faces, edges, contours, name, size, forma
 	del x_coordinates[:]
 	del y_coordinates[:]
 	plt.savefig(title + format)
-	plt.savefig(title + normal_format)
+     
 	return assigned_color, fig, ax
 
 
-def draw_edges(edges, walls, threshold, name, size, format=default_format, filepath='.'):
+def draw_edges(edges, walls, threshold, name, size, format=normal_format, filepath='.'):
 	print(name)
 	x_coordinates = []
 	y_coordinates = []
@@ -313,10 +313,10 @@ def draw_edges(edges, walls, threshold, name, size, format=default_format, filep
 			del x_coordinates[:]
 			del y_coordinates[:]
 	plt.savefig(title + format)
-	plt.savefig(title + normal_format)
+     
 
 
-def draw_cells(polygon_cells, polygons_out, partial_polygons, name, size, format=default_format, filepath='.',):
+def draw_cells(polygon_cells, polygons_out, partial_polygons, name, size, format=normal_format, filepath='.',):
 	# draw the cells with different color based on classification of cells
 	print(name)
 	fig, ax = setup_plot(size)
@@ -340,11 +340,11 @@ def draw_cells(polygon_cells, polygons_out, partial_polygons, name, size, format
 		# ax.set_xlim(x_min, x_max)
 		# ax.set_ylim(y_min, y_max)
 	plt.savefig(title + format)
-	plt.savefig(title + normal_format)
+     
 	return fig, ax
 
 
-def draw_rooms(rooms, colors, name, size, format=default_format, filepath='.'):
+def draw_rooms(rooms, colors, name, size, format=normal_format, filepath='.'):
 	new_colors = []
 	for i, color in enumerate(colors):
 		# random_number = random.randint(0, 16777215)
@@ -366,11 +366,11 @@ def draw_rooms(rooms, colors, name, size, format=default_format, filepath='.'):
 		# ax.set_xlim(x_min, x_max)
 		# ax.set_ylim(y_min, y_max)
 	plt.savefig(title + format)
-	plt.savefig(title + normal_format)
+     
 	return fig, ax
 
 
-def draw_rooms_on_map(image, name, size, format=default_format, filepath='.'):
+def draw_rooms_on_map(image, name, size, format=normal_format, filepath='.'):
 	print(name)
 	fig, ax = setup_plot(size)
 	title = os.path.join(filepath, name)
@@ -392,7 +392,7 @@ def draw_rooms_on_map(image, name, size, format=default_format, filepath='.'):
 	return title + normal_format
 
 
-def draw_rooms_on_map_plus_lines(image, extended_segments, name, size, format=default_format, filepath='.'):
+def draw_rooms_on_map_plus_lines(image, extended_segments, name, size, format=normal_format, filepath='.'):
 	print(name)
 	fig, ax = setup_plot(size)
 	title = os.path.join(filepath, name)
@@ -420,7 +420,7 @@ def draw_rooms_on_map_plus_lines(image, extended_segments, name, size, format=de
 	pdf_image.save(title + format)
 
 
-def draw_rooms_on_map_prediction(image, name, size, format=default_format, filepath='.'):
+def draw_rooms_on_map_prediction(image, name, size, format=normal_format, filepath='.'):
 	print(name)
 	fig, ax = setup_plot(size)
 	title = os.path.join(filepath, name)
@@ -453,7 +453,7 @@ def draw_rooms_on_map_prediction(image, name, size, format=default_format, filep
 	pdf_image.save(title + format)
 
 
-def draw_sides(edges, name, size, format=default_format, filepath='.'):
+def draw_sides(edges, name, size, format=normal_format, filepath='.'):
 	print(name)
 	fig, ax = setup_plot(size)
 	x_coordinates = []
@@ -472,10 +472,10 @@ def draw_sides(edges, name, size, format=default_format, filepath='.'):
 			del x_coordinates[:]
 			del y_coordinates[:]
 	plt.savefig(title + format)
-	plt.savefig(title + normal_format)
+     
 
 
-def draw_wall_segments_rooms(rooms, colori, spatial_clusters, wall_list, name, size, format=default_format, filepath='.'):
+def draw_wall_segments_rooms(rooms, colori, spatial_clusters, wall_list, name, size, format=normal_format, filepath='.'):
 	# draw walls, weighted segments and rooms
 	fig, ax = setup_plot(size)
 	title = os.path.join(filepath, name)
@@ -503,4 +503,4 @@ def draw_wall_segments_rooms(rooms, colori, spatial_clusters, wall_list, name, s
 		# ax.set_xlim(x_min, x_max)
 		# ax.set_ylim(y_min, y_max)
 	plt.savefig(title + format)
-	plt.savefig(title + normal_format)
+     

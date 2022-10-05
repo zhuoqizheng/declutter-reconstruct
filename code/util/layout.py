@@ -1,5 +1,5 @@
 '''
-funzioni utili alla costruzione del layout delle stanze partendo da un immagine nota della mappa, dalla quale non si conosce nulla.
+useful functions for the construction of the layout of the rooms starting from a known image of the map, from which nothing is known.
 '''
 import math
 
@@ -98,7 +98,7 @@ def external_contour(img_rgb):
 	return screen_cnt, vertices
 
 
-def cluster_ang(h, min_offset, walls, num_min=3, min_lenght=3, diagonals=True):
+def cluster_ang(walls, h, min_offset, num_min=3, min_lenght=3, diagonals=True):
 	# make angular clusters
 	# make clusters centers with mean-shift
 	cluster_centers = ms.mean_shift(h, min_offset, walls)

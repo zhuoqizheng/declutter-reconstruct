@@ -137,10 +137,10 @@ def assign_angular_cluster(wall_list, cluster_centers):
 
 def spatial_clustering(threshold, wall_list):
 
-	# assegna cluster spaziale ad ogni muro di lista_muri. 2 muri hanno stesso cluster spaziale se hanno stesso cluster
-	# angolare e se hanno distanza laterale minore di soglia. Cluster spaziale = indice di posizione del primo muro in
-	# lista_muri che appartiene a quel cluster spaziale. E questo primo muro avra' quindi come cluster spaziale il
-	# proprio indice di posizione.
+	# assign spatial cluster to each wall of wall_list. 2 walls have the same spatial cluster if they have the same cluster
+	# angular and if they have a lateral distance less than the threshold. Spatial cluster = position index of the first wall in
+	# wall_list belonging to that space cluster. And this first wall will therefore have the
+	# own position index.
 
 	for index, wall1 in enumerate(wall_list):
 		if wall1.spatial_cluster is None:
@@ -245,22 +245,38 @@ def get_projected_points(wall1, wall2):
 		return mid2_x, mid1_y
 
 
-def find_extremes(walls_list):
+def find_wall_boudary(walls_list,offset,size):
 	# find xmin,ymin,xmax,ymax of walls of walls_list. They form the bounding box.
 	x_coordinates = []
 	y_coordinates = []
+	
 	for wall in walls_list:
 		x_coordinates.append(float(wall.x1))
 		x_coordinates.append(float(wall.x2))
 		y_coordinates.append(float(wall.y1))
 		y_coordinates.append(float(wall.y2))
+	
 	xmin = min(x_coordinates)
 	xmax = max(x_coordinates)
 	ymin = min(y_coordinates)
 	ymax = max(y_coordinates)
-	del x_coordinates[:]
-	del y_coordinates[:]
-	return np.array([xmin, xmax, ymin, ymax])
+	# del x_coordinates[:]
+	# del y_coordinates[:]
+	
+	xmin -= offset
+	xmax += offset
+	ymin -= offset
+	ymax += offset
+
+	if xmin < 0:
+		xmin = 0
+	if ymin < 0:
+		ymin = 0
+	if xmax > size[0]:
+		xmax = size[0]
+	if ymax > size[1]:
+		ymax = size[1]
+	return xmin, xmax, ymin, ymax
 
 
 def create_edges(extended_segments):

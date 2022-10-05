@@ -16,7 +16,7 @@ from skimage.morphology import skeletonize
 from skimage.util import invert
 
 from parameters import ParameterObj
-from util.disegna import setup_plot
+from util.visualize import setup_plot
 
 
 def remove_2_neighbors(graph):

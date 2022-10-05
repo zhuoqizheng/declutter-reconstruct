@@ -57,7 +57,7 @@ class ParameterObj:
         self.sogliaLateraleClusterMura = 5
 
         # Extended lines parameters
-        self.th1 = 0.1
+        self.th1 = 0.08
         self.distance_extended_segment = 20
 
         # Edges parameters
@@ -132,7 +132,7 @@ class ParameterDraw:
         self.walls = True
         self.contour = False
         self.angular_cluster = True
-        self.representative_segments = True
+        self.representative_sgms = True
         self.spatial_wall_cluster = True
         self.spatial_cluster = True
         self.extended_lines = True
@@ -143,5 +143,5 @@ class ParameterDraw:
         self.rooms_on_map = True
         self.rooms_on_map_prediction = True
         self.rooms_on_map_lines = True
-        self.sides = False
+        self.sides = True
         self.complete = True

@@ -17,6 +17,8 @@ def make_folder(location, folder_name):
 
 
 def check_int(name_folder):
+    if not os.path.exists(name_folder):
+        os.mkdir(name_folder)
     maps = os.listdir(name_folder)
     while True:
         index = 0
@@ -61,9 +63,10 @@ def main():
     # ----------------------------------------------------------
 
     # taking all the folders inside the path INPUT/IMGs
-    list_dir = './data/INPUT/IMGs'
+    list_dir = '/home/zzq/Documents/declutter-reconstruct/code/data/INPUT/Carmen_Input'
     # asking the user what folder want to use
     paths.name_folder_input = check_int(list_dir)
+
     paths.path_folder_input = list_dir + '/' + paths.name_folder_input
 
     if paths.name_folder_input == 'Bormann' or paths.name_folder_input == 'Bormann_furnitures':
@@ -77,8 +80,8 @@ def main():
     # asking what map if is a single action
     if action == 'single action':
         # saving the output folder where the output is saved
-        make_folder('./data/OUTPUT', 'SINGLEMAP')
-        paths.path_folder_output = './data/OUTPUT/SINGLEMAP'
+        make_folder('/home/zzq/Documents/declutter-reconstruct/code/data/OUTPUT', 'SINGLEMAP')
+        paths.path_folder_output = '/home/zzq/Documents/declutter-reconstruct/code/data/OUTPUT/SINGLEMAP'
         # asking what map to use
         paths.metric_map_name = check_int(paths.path_folder_input)
         paths.metric_map_path = os.path.join(paths.path_folder_input + '/' + paths.metric_map_name)
@@ -86,8 +89,8 @@ def main():
 
     elif action == 'batch':
         # saving the output folder
-        paths.path_folder_output = os.path.join('./data/OUTPUT', paths.name_folder_input)
-        make_folder('./data/OUTPUT', paths.name_folder_input)
+        paths.path_folder_output = os.path.join('/home/zzq/Documents/declutter-reconstruct/code/data/OUTPUT', paths.name_folder_input)
+        make_folder('/home/zzq/Documents/declutter-reconstruct/code/data/OUTPUT', paths.name_folder_input)
         start_main(action, parameters_object, paths)
         filename = os.path.join(paths.path_log_folder, 'average_evaluation.txt')
         file = open(filename, 'w+')
@@ -144,9 +147,9 @@ def main():
 
     elif action == 'sliding parameters':
         # saving the output folder where the output is saved
-        paths.path_folder_output = os.path.join('./data/OUTPUT', paths.name_folder_input)
-        make_folder('./data/OUTPUT', paths.name_folder_input)
-        filename = os.path.join('./data/OUTPUT/' + paths.name_folder_input, 'evaluation_sliding.txt')
+        paths.path_folder_output = os.path.join('/home/zzq/Documents/declutter-reconstruct/code/data/OUTPUT', paths.name_folder_input)
+        make_folder('/home/zzq/Documents/declutter-reconstruct/code/data/OUTPUT', paths.name_folder_input)
+        filename = os.path.join('/home/zzq/Documents/declutter-reconstruct/code/data/OUTPUT' + paths.name_folder_input, 'evaluation_sliding.txt')
         file = open(filename, 'w+')
         parameters_object.tab_sliding.append(['filter level', 'th extended lines', 'iou_micro_mean_seg_to_gt',
                                 'iou_macro_seg_to_gt', 'iou_micro_mean_gt_to_seg', 'iou_macro_gt_to_seg'])
@@ -183,7 +186,7 @@ def start_main(action, parameters_object, paths):
             paths.filepath = paths.path_log_folder + '/' + paths.metric_map_name + '/'
             make_folder(paths.path_log_folder, paths.metric_map_name)
             # copying the parameters file
-            shutil.copy('parameters.py', paths.filepath + '/parameters.py')
+            shutil.copy('/home/zzq/Documents/declutter-reconstruct/code/parameters.py', paths.filepath + '/parameters.py')
             # ----------------------------------------------------------------
             # orebro
             make_folder(paths.path_log_folder, paths.metric_map_name + '/OREBRO')
@@ -196,6 +199,9 @@ def start_main(action, parameters_object, paths):
             # ----------------------------------------------------------------
             # starting main
             print('map name ', paths.metric_map_name)
+            '''
+            REAL MAP PROCCESSING PART
+            '''
             minibatch.start_main(par, parameters_object, paths)
 
     # -------------------EXECUTION---------------------------------------
@@ -217,7 +223,7 @@ def start_main(action, parameters_object, paths):
         fft.main(paths.metric_map_path, paths.path_orebro, parameters_object.filter_level, parameters_object)
         # ----------------------------------------------------------------
         # evaluation
-        paths.gt_color = './data/INPUT/gt_colored/' + paths.name_folder_input + '/' + paths.metric_map_name
+        paths.gt_color = '/home/zzq/Documents/declutter-reconstruct/code/data/INPUT/gt_colored/' + paths.name_folder_input + '/' + paths.metric_map_name
         # ----------------------------------------------------------------
         # starting main
         print('map name ', paths.metric_map_name)

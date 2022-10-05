@@ -4,9 +4,9 @@ import numpy as np
 from skimage import io
 from skimage.util import img_as_ubyte
 
-from fft_structure_extraction import FFTStructureExtraction as structure_extraction
+from rose_v1_repo.fft_structure_extraction import FFTStructureExtraction as structure_extraction
 
-import fft_structure_extraction
+import rose_v1_repo.fft_structure_extraction as fft_structure_extraction
 
 
 def main(path_to_image, path_to_folder, filter_level, par):

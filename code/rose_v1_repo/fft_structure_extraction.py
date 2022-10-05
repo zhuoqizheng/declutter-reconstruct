@@ -16,9 +16,10 @@ from skimage.morphology import binary_dilation
 from sklearn import mixture
 from sklearn.cluster import DBSCAN
 from sklearn.neighbors import KernelDensity
-
-import helpers as he
-import segment_handling as sh
+# import helpers as he
+import rose_v1_repo.helpers as he
+from .segment_handling import Segment
+# from segment_handling import Segment
 
 
 def generate_line_segments_per_direction(slices):
@@ -643,7 +644,7 @@ class FFTStructureExtraction:
                 else:
                     filled = True
 
-                local_segment = sh.Segment()
+                local_segment = Segment()
                 cluster = np.where(temp_map_fill == id - 1)
                 cluster = np.column_stack((cluster[0], cluster[1]))
                 local_segment.add_cells(cluster)
@@ -692,7 +693,7 @@ class FFTStructureExtraction:
                     id = id + 1
                 else:
                     filled = True
-                local_segment = sh.Segment()
+                local_segment = Segment()
                 cluster = np.where(temp_map_fill == id - 1)
                 cluster = np.column_stack((cluster[0], cluster[1]))
                 local_segment.add_cells(cluster)
